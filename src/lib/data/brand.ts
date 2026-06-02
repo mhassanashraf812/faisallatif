@@ -81,5 +81,5 @@ export const businessInfo = {
   city: "Fateh Pur, Pakistan",
   phone: "03126762123",
   email: "Faisallatifsweets@gmail.com",
-  hours: "Daily 8:00 AM – 10:00 PM",
+  hours: "Daily 5:00 AM – 12:00 PM",
 };
