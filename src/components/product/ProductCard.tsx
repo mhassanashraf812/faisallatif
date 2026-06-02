@@ -2,12 +2,14 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Plus } from "lucide-react";
+import { MessageCircle } from "lucide-react";
 import { OptimizedImage } from "@/components/ui/OptimizedImage";
 import { Product } from "@/lib/data/products";
-import { formatPrice } from "@/lib/utils";
-import { useCartStore } from "@/store/cartStore";
 import { Button } from "@/components/ui/Button";
+import {
+  buildSingleProductOrderMessage,
+  getWhatsAppLink,
+} from "@/lib/whatsapp";
 
 interface ProductCardProps {
   product: Product;
@@ -15,7 +17,7 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product, priority = false }: ProductCardProps) {
-  const addItem = useCartStore((s) => s.addItem);
+  const orderLink = getWhatsAppLink(buildSingleProductOrderMessage(product.name, 1));
 
   return (
     <motion.article
@@ -49,21 +51,13 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
         <p className="mt-1 line-clamp-2 text-sm text-text-secondary">
           {product.description}
         </p>
-        <div className="mt-4 flex items-center justify-between">
-          <span className="font-semibold text-accent">
-            {formatPrice(product.price)}
-          </span>
-          <Button
-            size="sm"
-            onClick={(e) => {
-              e.preventDefault();
-              addItem(product);
-            }}
-            aria-label={`Add ${product.name} to cart`}
-          >
-            <Plus className="h-4 w-4" />
-            Add
-          </Button>
+        <div className="mt-4 flex items-center justify-end">
+          <a href={orderLink} target="_blank" rel="noopener noreferrer">
+            <Button size="sm" aria-label={`Order ${product.name} on WhatsApp`}>
+              <MessageCircle className="h-4 w-4" />
+              Order on WhatsApp
+            </Button>
+          </a>
         </div>
       </div>
     </motion.article>

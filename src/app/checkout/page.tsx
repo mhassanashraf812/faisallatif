@@ -6,7 +6,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   Truck,
   Store,
-  CreditCard,
   MessageCircle,
   Check,
   ChevronRight,
@@ -16,20 +15,17 @@ import { PageTransition } from "@/components/layout/PageTransition";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { useCartStore } from "@/store/cartStore";
-import { formatPrice } from "@/lib/utils";
 import { cn } from "@/lib/utils";
+import { buildCartOrderMessage, getWhatsAppLink } from "@/lib/whatsapp";
 
 const steps = ["Delivery", "Payment", "Confirm"];
 
 export default function CheckoutPage() {
-  const { items, getSubtotal, clearCart } = useCartStore();
-  const subtotal = getSubtotal();
-  const deliveryFee = 150;
-  const total = subtotal + deliveryFee;
+  const { items, clearCart } = useCartStore();
 
   const [step, setStep] = useState(0);
   const [orderType, setOrderType] = useState<"delivery" | "pickup">("delivery");
-  const [paymentMethod, setPaymentMethod] = useState<"cod" | "whatsapp">("cod");
+  const [paymentMethod, setPaymentMethod] = useState<"whatsapp">("whatsapp");
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -67,12 +63,7 @@ export default function CheckoutPage() {
           <h1 className="mt-6 font-heading text-3xl font-bold">Order Confirmed!</h1>
           <p className="mt-3 text-text-secondary">
             Thank you, {formData.name}! Your order has been placed successfully.
-            {paymentMethod === "whatsapp"
-              ? " We'll contact you on WhatsApp shortly."
-              : " We'll deliver your order soon."}
-          </p>
-          <p className="mt-4 font-semibold text-accent">
-            Total: {formatPrice(total)}
+            {" We'll contact you on WhatsApp shortly."}
           </p>
           <Link href="/" className="mt-8">
             <Button size="lg">Back to Home</Button>
@@ -83,6 +74,14 @@ export default function CheckoutPage() {
   }
 
   const handlePlaceOrder = () => {
+    const message = buildCartOrderMessage(items, {
+      name: formData.name,
+      phone: formData.phone,
+      orderType,
+      address: formData.address,
+      notes: formData.notes,
+    });
+    window.open(getWhatsAppLink(message), "_blank", "noopener,noreferrer");
     clearCart();
     setOrderPlaced(true);
   };
@@ -146,9 +145,7 @@ export default function CheckoutPage() {
                   <Truck className="h-6 w-6 text-accent" />
                   <div>
                     <p className="font-semibold">Delivery</p>
-                    <p className="text-sm text-text-secondary">
-                      Rs. {deliveryFee} delivery fee
-                    </p>
+                    <p className="text-sm text-text-secondary">Share address on WhatsApp</p>
                   </div>
                 </button>
                 <button
@@ -218,24 +215,7 @@ export default function CheckoutPage() {
               <h2 className="font-heading text-xl font-semibold">
                 Payment Method
               </h2>
-              <div className="grid gap-4 sm:grid-cols-2">
-                <button
-                  onClick={() => setPaymentMethod("cod")}
-                  className={cn(
-                    "flex items-center gap-4 rounded-2xl border-2 p-5 text-left transition-colors",
-                    paymentMethod === "cod"
-                      ? "border-accent bg-accent/5"
-                      : "border-gray-200 hover:border-accent/30"
-                  )}
-                >
-                  <CreditCard className="h-6 w-6 text-accent" />
-                  <div>
-                    <p className="font-semibold">Cash on Delivery</p>
-                    <p className="text-sm text-text-secondary">
-                      Pay when you receive
-                    </p>
-                  </div>
-                </button>
+              <div className="grid gap-4 sm:grid-cols-1">
                 <button
                   onClick={() => setPaymentMethod("whatsapp")}
                   className={cn(
@@ -249,7 +229,7 @@ export default function CheckoutPage() {
                   <div>
                     <p className="font-semibold">WhatsApp Order</p>
                     <p className="text-sm text-text-secondary">
-                      Confirm via WhatsApp
+                      Confirm your order directly on WhatsApp
                     </p>
                   </div>
                 </button>
@@ -266,26 +246,9 @@ export default function CheckoutPage() {
                       <span>
                         {item.quantity}x {item.product.name}
                       </span>
-                      <span>{formatPrice(item.product.price * item.quantity)}</span>
                     </li>
                   ))}
                 </ul>
-                <div className="mt-4 space-y-2 border-t border-gray-200 pt-4 text-sm">
-                  <div className="flex justify-between">
-                    <span>Subtotal</span>
-                    <span>{formatPrice(subtotal)}</span>
-                  </div>
-                  {orderType === "delivery" && (
-                    <div className="flex justify-between">
-                      <span>Delivery</span>
-                      <span>{formatPrice(deliveryFee)}</span>
-                    </div>
-                  )}
-                  <div className="flex justify-between text-lg font-semibold">
-                    <span>Total</span>
-                    <span className="text-accent">{formatPrice(total)}</span>
-                  </div>
-                </div>
               </div>
             </motion.div>
           )}
@@ -322,16 +285,12 @@ export default function CheckoutPage() {
                 )}
                 <div>
                   <p className="text-sm text-text-secondary">Payment</p>
-                  <p className="font-medium">
-                    {paymentMethod === "cod"
-                      ? "Cash on Delivery"
-                      : "WhatsApp Order"}
-                  </p>
+                  <p className="font-medium">WhatsApp Order</p>
                 </div>
                 <div className="border-t border-gray-200 pt-4">
-                  <p className="text-sm text-text-secondary">Total Amount</p>
+                  <p className="text-sm text-text-secondary">Confirmation</p>
                   <p className="font-heading text-2xl font-bold text-accent">
-                    {formatPrice(total)}
+                    WhatsApp Order
                   </p>
                 </div>
               </div>

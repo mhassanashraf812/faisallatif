@@ -5,13 +5,16 @@ import { OptimizedImage } from "@/components/ui/OptimizedImage";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { motion } from "framer-motion";
-import { Minus, Plus, ArrowLeft, Check } from "lucide-react";
+import { Minus, Plus, ArrowLeft, Check, MessageCircle } from "lucide-react";
 import { PageTransition } from "@/components/layout/PageTransition";
 import { Button } from "@/components/ui/Button";
 import { Modal } from "@/components/ui/Modal";
 import { getProductById } from "@/lib/data/products";
-import { formatPrice } from "@/lib/utils";
 import { useCartStore } from "@/store/cartStore";
+import {
+  buildSingleProductOrderMessage,
+  getWhatsAppLink,
+} from "@/lib/whatsapp";
 
 interface ProductDetailPageProps {
   params: Promise<{ productId: string }>;
@@ -34,6 +37,9 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
     addItem(product, quantity, customNote || undefined);
     setShowConfirm(true);
   };
+  const orderLink = getWhatsAppLink(
+    buildSingleProductOrderMessage(product.name, quantity, customNote || undefined)
+  );
 
   return (
     <PageTransition>
@@ -74,9 +80,6 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
             <h1 className="mt-4 font-heading text-3xl font-bold sm:text-4xl">
               {product.name}
             </h1>
-            <p className="mt-2 text-2xl font-semibold text-accent">
-              {formatPrice(product.price)}
-            </p>
             <p className="mt-6 leading-relaxed text-text-secondary">
               {product.description}
             </p>
@@ -133,8 +136,14 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
               </div>
 
               <Button size="lg" onClick={handleAddToCart} className="flex-1 sm:flex-none">
-                Add to Cart — {formatPrice(product.price * quantity)}
+                Add to Cart
               </Button>
+              <a href={orderLink} target="_blank" rel="noopener noreferrer">
+                <Button size="lg" className="flex-1 sm:flex-none">
+                  <MessageCircle className="h-4 w-4" />
+                  Order on WhatsApp
+                </Button>
+              </a>
             </div>
           </motion.div>
         </div>

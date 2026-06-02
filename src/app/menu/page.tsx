@@ -14,7 +14,7 @@ import {
 import { brandTaglines } from "@/lib/data/brand";
 import { cn } from "@/lib/utils";
 
-type SortOption = "default" | "price-low" | "price-high" | "name";
+type SortOption = "default" | "name";
 
 function MenuContent() {
   const searchParams = useSearchParams();
@@ -48,16 +48,8 @@ function MenuContent() {
       );
     }
 
-    switch (sort) {
-      case "price-low":
-        result.sort((a, b) => a.price - b.price);
-        break;
-      case "price-high":
-        result.sort((a, b) => b.price - a.price);
-        break;
-      case "name":
-        result.sort((a, b) => a.name.localeCompare(b.name));
-        break;
+    if (sort === "name") {
+      result.sort((a, b) => a.name.localeCompare(b.name));
     }
 
     return result;
@@ -98,8 +90,6 @@ function MenuContent() {
               className="rounded-full border border-gray-200 bg-white px-4 py-3 text-sm focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
             >
               <option value="default">Default</option>
-              <option value="price-low">Price: Low to High</option>
-              <option value="price-high">Price: High to Low</option>
               <option value="name">Name A-Z</option>
             </select>
           </div>

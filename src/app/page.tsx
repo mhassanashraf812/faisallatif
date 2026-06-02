@@ -2,14 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import {
-  ArrowRight,
-  Award,
-  MapPin,
-  Sparkles,
-  Star,
-  Heart,
-} from "lucide-react";
+import { ArrowRight, Award, MapPin, Sparkles, Star, Heart } from "lucide-react";
 import { PageTransition } from "@/components/layout/PageTransition";
 import { CategorySection } from "@/components/home/CategorySection";
 import { ProductCard } from "@/components/product/ProductCard";
@@ -148,8 +141,12 @@ export default function HomePage() {
                 />
               </div>
               <div className="absolute -bottom-4 -right-4 rounded-2xl bg-maroon px-6 py-4 text-white shadow-xl sm:-bottom-6 sm:-right-6">
-                <p className="font-script text-2xl text-gold">Since Generations</p>
-                <p className="text-sm text-white/80">The Pillars of Our Legacy</p>
+                <p className="font-script text-2xl text-gold">
+                  Since Generations
+                </p>
+                <p className="text-sm text-white/80">
+                  The Pillars of Our Legacy
+                </p>
               </div>
             </motion.div>
 
@@ -168,20 +165,20 @@ export default function HomePage() {
               </h2>
               <p className="mt-5 leading-relaxed text-text-secondary">
                 Faisal Latif Sweets & Bakers stands on the foundation of trust,
-                tradition, and an unwavering commitment to quality. From Main Bazar
-                Fateh Pur, Layyah, our family has served the community with sweets
-                that carry the taste of home and cakes that make every celebration
-                unforgettable.
+                tradition, and an unwavering commitment to quality. From Main
+                Bazar Fateh Pur, Layyah, our family has served the community
+                with sweets that carry the taste of home and cakes that make
+                every celebration unforgettable.
               </p>
               <p className="mt-4 leading-relaxed text-text-secondary">
                 Today, we are proud to be known as{" "}
-                <strong className="text-maroon">{brandTaglines.primary}</strong> —
-                a name synonymous with freshness, flavor, and the warmth of
+                <strong className="text-maroon">{brandTaglines.primary}</strong>{" "}
+                — a name synonymous with freshness, flavor, and the warmth of
                 Pakistani hospitality.
               </p>
               <div className="mt-8 grid grid-cols-3 gap-4 text-center">
                 {[
-                  { value: "25+", label: "Years of Trust" },
+                  { value: "50+", label: "Years of Trust" },
                   { value: "1000+", label: "Happy Customers" },
                   { value: "#1", label: "In Layyah" },
                 ].map((stat) => (
@@ -230,9 +227,7 @@ export default function HomePage() {
             <h2 className="font-heading text-3xl font-bold text-white sm:text-4xl">
               Customer Favorites
             </h2>
-            <p className="mt-3 text-white/70">
-              Most loved items from our menu
-            </p>
+            <p className="mt-3 text-white/70">Most loved items from our menu</p>
           </motion.div>
 
           <motion.div
@@ -240,7 +235,11 @@ export default function HomePage() {
             className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
           >
             {featured.slice(0, 6).map((product, i) => (
-              <ProductCard key={product.id} product={product} priority={i < 3} />
+              <ProductCard
+                key={product.id}
+                product={product}
+                priority={i < 3}
+              />
             ))}
           </motion.div>
 
@@ -289,7 +288,10 @@ export default function HomePage() {
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link href="/menu">
-              <Button size="lg" className="bg-gold text-maroon hover:bg-gold/90">
+              <Button
+                size="lg"
+                className="bg-gold text-maroon hover:bg-gold/90"
+              >
                 Start Ordering
                 <ArrowRight className="h-5 w-5" />
               </Button>

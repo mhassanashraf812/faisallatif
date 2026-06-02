@@ -3,11 +3,12 @@
 import { useState } from "react";
 import { OptimizedImage } from "@/components/ui/OptimizedImage";
 import { motion } from "framer-motion";
-import { MapPin, Phone, Mail, Clock, Send, Check } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
 import { PageTransition } from "@/components/layout/PageTransition";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { businessInfo, brandTaglines } from "@/lib/data/brand";
+import { getWhatsAppLink } from "@/lib/whatsapp";
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -15,6 +16,13 @@ export default function ContactPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const message = [
+      "Assalam o Alaikum, I need information.",
+      `Name: ${form.name}`,
+      `Email: ${form.email}`,
+      `Message: ${form.message}`,
+    ].join("\n");
+    window.open(getWhatsAppLink(message), "_blank", "noopener,noreferrer");
     setSubmitted(true);
   };
 
@@ -67,7 +75,12 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <p className="font-semibold">Phone</p>
-                  <p className="text-sm text-text-secondary">{businessInfo.phone}</p>
+                  <a
+                    href={`tel:${businessInfo.phone}`}
+                    className="text-sm text-text-secondary hover:text-accent"
+                  >
+                    {businessInfo.phone}
+                  </a>
                 </div>
               </div>
               <div className="flex items-start gap-4">
@@ -76,7 +89,12 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <p className="font-semibold">Email</p>
-                  <p className="text-sm text-text-secondary">{businessInfo.email}</p>
+                  <a
+                    href={`mailto:${businessInfo.email}`}
+                    className="text-sm text-text-secondary hover:text-accent"
+                  >
+                    {businessInfo.email}
+                  </a>
                 </div>
               </div>
               <div className="flex items-start gap-4">
@@ -99,14 +117,11 @@ export default function ContactPage() {
                 animate={{ opacity: 1, scale: 1 }}
                 className="flex flex-col items-center py-12 text-center"
               >
-                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-success/10">
-                  <Check className="h-8 w-8 text-success" />
-                </div>
                 <h2 className="mt-4 font-heading text-xl font-semibold">
-                  Message Sent!
+                  Message Sent to WhatsApp
                 </h2>
                 <p className="mt-2 text-sm text-text-secondary">
-                  Thank you for reaching out. We&apos;ll get back to you soon.
+                  Thanks! We opened WhatsApp so you can confirm quickly.
                 </p>
               </motion.div>
             ) : (

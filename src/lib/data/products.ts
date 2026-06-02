@@ -38,8 +38,7 @@ export const products: Product[] = [
     ingredients: ["Dark chocolate", "Cocoa", "Fresh cream", "Butter", "Eggs", "Flour"],
     price: 2800,
     category: "Cakes",
-    image:
-      "https://images.unsplash.com/photo-1578985545062-c437068358b2",
+    image: "/images/menu/chocolate-fudge-cake.jpg",
     featured: true,
     customCake: true,
   },
@@ -51,8 +50,7 @@ export const products: Product[] = [
     ingredients: ["Cream cheese", "Buttermilk", "Cocoa", "Vanilla", "Eggs"],
     price: 3200,
     category: "Cakes",
-    image:
-      "https://images.unsplash.com/photo-1616541823729-cd2a25fb0f8",
+    image: "/images/menu/red-velvet.jpg",
     featured: true,
     customCake: true,
   },
@@ -76,8 +74,7 @@ export const products: Product[] = [
     ingredients: ["Khoya", "Semolina", "Rose water", "Cardamom", "Sugar syrup"],
     price: 850,
     category: "Sweets",
-    image:
-      "https://images.unsplash.com/photo-1606312619070-d48d4e103f1",
+    image: "/images/menu/gulab-jamun.jpg",
     featured: true,
   },
   {
@@ -88,8 +85,7 @@ export const products: Product[] = [
     ingredients: ["Milk powder", "Pistachios", "Coconut", "Ghee", "Sugar"],
     price: 1200,
     category: "Sweets",
-    image:
-      "https://images.unsplash.com/photo-1603532648955-039310d9ed75",
+    image: "/images/menu/barfi.jpg",
     featured: true,
   },
   {
@@ -111,8 +107,7 @@ export const products: Product[] = [
     ingredients: ["Butter", "Flour", "Yeast", "Milk"],
     price: 350,
     category: "Bakery Items",
-    image:
-      "https://images.unsplash.com/photo-1555507036-ab1f4038808a",
+    image: "/images/menu/bakery-items.jpg",
     featured: true,
   },
   {
@@ -123,8 +118,7 @@ export const products: Product[] = [
     ingredients: ["Sourdough starter", "Flour", "Salt", "Water"],
     price: 450,
     category: "Bakery Items",
-    image:
-      "https://images.unsplash.com/photo-1509440159596-0249088772ff",
+    image: "/images/menu/bakery-items.jpg",
   },
   {
     id: "cinnamon-rolls",
@@ -134,8 +128,7 @@ export const products: Product[] = [
     ingredients: ["Cinnamon", "Brown sugar", "Cream cheese", "Flour", "Butter"],
     price: 550,
     category: "Bakery Items",
-    image:
-      "https://images.unsplash.com/photo-1606890737304-57a1f8b31db9",
+    image: "/images/menu/bakery-items.jpg",
   },
   {
     id: "chicken-burger",
@@ -145,8 +138,7 @@ export const products: Product[] = [
     ingredients: ["Chicken breast", "Brioche bun", "Lettuce", "Special sauce"],
     price: 650,
     category: "Fast Food",
-    image:
-      "https://images.unsplash.com/photo-1568901346375-23c9450c58cd",
+    image: "/images/menu/burger.jpg",
     featured: true,
   },
   {
@@ -157,8 +149,7 @@ export const products: Product[] = [
     ingredients: ["Chicken", "Egg", "Cheese", "Lettuce", "Tomato", "Toast"],
     price: 750,
     category: "Fast Food",
-    image:
-      "https://images.unsplash.com/photo-1528735602780-2552fd46c7af",
+    image: "/images/menu/sundae.jpg",
   },
   {
     id: "fries-combo",
@@ -168,8 +159,7 @@ export const products: Product[] = [
     ingredients: ["Potatoes", "Cheese sauce", "Herbs", "Spices"],
     price: 450,
     category: "Fast Food",
-    image:
-      "https://images.unsplash.com/photo-1573080496219-bb080dd4f877",
+    image: "/images/menu/pizza.jpg",
   },
   {
     id: "truffle-chocolates",
@@ -202,8 +192,7 @@ export const products: Product[] = [
     ingredients: ["Chocolate ice cream", "Hot fudge", "Whipped cream", "Nuts"],
     price: 550,
     category: "Sundaes",
-    image:
-      "https://images.unsplash.com/photo-1563805042-7684c019e1cb",
+    image: "/images/menu/pasta.jpg",
     featured: true,
   },
   {
@@ -214,8 +203,7 @@ export const products: Product[] = [
     ingredients: ["Vanilla ice cream", "Fresh strawberries", "Syrup", "Cherry"],
     price: 500,
     category: "Sundaes",
-    image:
-      "https://images.unsplash.com/photo-1488900128323-21503983a07e",
+    image: "/images/menu/sundae.jpg",
   },
   {
     id: "brownie-sundae",
@@ -225,8 +213,7 @@ export const products: Product[] = [
     ingredients: ["Brownie", "Ice cream", "Caramel", "Chocolate chips"],
     price: 650,
     category: "Sundaes",
-    image:
-      "https://images.unsplash.com/photo-1514845575600-0862a7a4a4b4",
+    image: "/images/menu/sundae.jpg",
     featured: true,
   },
   {

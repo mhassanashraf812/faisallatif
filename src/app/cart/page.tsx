@@ -3,15 +3,15 @@
 import { OptimizedImage } from "@/components/ui/OptimizedImage";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Minus, Plus, Trash2, ShoppingBag } from "lucide-react";
+import { Minus, Plus, Trash2, ShoppingBag, MessageCircle } from "lucide-react";
 import { PageTransition } from "@/components/layout/PageTransition";
 import { Button } from "@/components/ui/Button";
 import { useCartStore } from "@/store/cartStore";
-import { formatPrice } from "@/lib/utils";
+import { buildCartOrderMessage, getWhatsAppLink } from "@/lib/whatsapp";
 
 export default function CartPage() {
-  const { items, updateQuantity, removeItem, getSubtotal } = useCartStore();
-  const subtotal = getSubtotal();
+  const { items, updateQuantity, removeItem } = useCartStore();
+  const orderLink = getWhatsAppLink(buildCartOrderMessage(items));
 
   if (items.length === 0) {
     return (
@@ -73,9 +73,6 @@ export default function CartPage() {
                       Note: {item.customNote}
                     </p>
                   )}
-                  <p className="mt-1 text-accent font-semibold">
-                    {formatPrice(item.product.price)}
-                  </p>
                 </div>
 
                 <div className="mt-3 flex items-center justify-between">
@@ -113,28 +110,20 @@ export default function CartPage() {
                 </div>
               </div>
 
-              <div className="hidden text-right font-semibold sm:block">
-                {formatPrice(item.product.price * item.quantity)}
-              </div>
             </motion.div>
           ))}
         </div>
 
         <div className="mt-10 rounded-2xl bg-secondary-bg p-6">
-          <div className="flex items-center justify-between text-lg">
-            <span className="font-medium">Subtotal</span>
-            <span className="font-heading text-2xl font-bold text-accent">
-              {formatPrice(subtotal)}
-            </span>
-          </div>
           <p className="mt-2 text-sm text-text-secondary">
-            Delivery charges calculated at checkout
+            Ready to order? Send your cart directly on WhatsApp.
           </p>
-          <Link href="/checkout" className="mt-6 block">
-            <Button size="lg" className="w-full">
-              Proceed to Checkout
+          <a href={orderLink} target="_blank" rel="noopener noreferrer">
+            <Button size="lg" className="mt-6 w-full">
+              <MessageCircle className="h-4 w-4" />
+              Order This Cart on WhatsApp
             </Button>
-          </Link>
+          </a>
         </div>
       </div>
     </PageTransition>

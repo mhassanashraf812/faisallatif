@@ -18,7 +18,7 @@ export const categoryShowcases: CategoryShowcase[] = [
     tagline: "Mithai jo dil jeet le",
     description:
       "Traditional gulab jamun, barfi, jalebi & more — made fresh daily with authentic recipes passed down through generations.",
-    image: "https://images.unsplash.com/photo-1603532648955-039310d9ed75",
+    image: "/images/menu/barfi.jpg",
     category: "Sweets",
   },
   {
@@ -28,7 +28,7 @@ export const categoryShowcases: CategoryShowcase[] = [
     tagline: "Har khushi ka cake",
     description:
       "Custom birthday, wedding & celebration cakes — beautifully designed and baked to perfection for your special moments.",
-    image: "https://images.unsplash.com/photo-1578985545062-c437068358b2",
+    image: "/images/menu/cakes.jpeg",
     category: "Cakes",
   },
   {
@@ -38,7 +38,7 @@ export const categoryShowcases: CategoryShowcase[] = [
     tagline: "Subah ki tazi khushboo",
     description:
       "Fresh croissants, artisan bread, cinnamon rolls & pastries — straight from our ovens every morning.",
-    image: "https://images.unsplash.com/photo-1555507036-ab1f4038808a",
+    image: "/images/menu/bakery-items.jpg",
     category: "Bakery Items",
   },
   {
@@ -48,7 +48,7 @@ export const categoryShowcases: CategoryShowcase[] = [
     tagline: "Bhook mitao, mazaa pao",
     description:
       "Crispy burgers, loaded fries, club sandwiches & more — quick, delicious meals for the whole family.",
-    image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd",
+    image: "/images/menu/pizza.jpg",
     category: "Fast Food",
   },
   {
@@ -58,7 +58,7 @@ export const categoryShowcases: CategoryShowcase[] = [
     tagline: "Thandi meethi treat",
     description:
       "Creamy ice cream sundaes topped with chocolate, nuts & fresh fruits — the perfect cool indulgence.",
-    image: "https://images.unsplash.com/photo-1563805042-7684c019e1cb",
+    image: "/images/menu/sundae.jpg",
     category: "Sundaes",
   },
 ];
@@ -77,9 +77,9 @@ export const brandTaglines = {
 
 export const businessInfo = {
   name: "Faisal Latif Sweets & Bakers",
-  address: "Main Bazar, Fateh Pur, Layyah",
-  city: "Layyah, Punjab, Pakistan",
-  phone: "+92 300 1234567",
-  email: "info@faisallatif.com",
+  address: "MM Road, Fateh Pur",
+  city: "Fateh Pur, Pakistan",
+  phone: "03126762123",
+  email: "Faisallatifsweets@gmail.com",
   hours: "Daily 8:00 AM – 10:00 PM",
 };
